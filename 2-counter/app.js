@@ -1,6 +1,12 @@
+/**
+ * @constant {DOM}
+ */
 const value = document.getElementById("value");
 const btns = document.querySelectorAll(".btn");
 
+/**
+ * @type {number}
+ */
 let count = 0;
 
 btns.forEach((btn) => {

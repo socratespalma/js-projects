@@ -1,4 +1,7 @@
-// local reviews data
+/**
+ * Local reviews data
+ * @constant {array}
+ */
 const reviews = [
   {
     id: 1,
@@ -30,6 +33,9 @@ const reviews = [
   },
 ];
 
+/**
+ * @constant {DOM}
+ */
 const image = document.getElementById("person-img");
 const author = document.getElementById("author");
 const job = document.getElementById("job");
@@ -38,12 +44,48 @@ const btnPrev = document.querySelector(".prev-btn");
 const btnNext = document.querySelector(".next-btn");
 const btnRandom = document.querySelector(".random-btn");
 
-let currenItem = 2;
+/**
+ * @type {number}
+ */
+let currenItem = 0;
 
-window.addEventListener("DOMContentLoaded", function () {
-  const item = reviews[currenItem];
+/**
+ * A function that sets values given a specific number
+ * @param {number} person
+ * @example
+ *    showPerson(1)
+ */
+const showPerson = (person) => {
+  const item = reviews[person];
   image.src = item.img;
   author.textContent = item.name;
   job.textContent = item.job;
   info.textContent = item.text;
+};
+
+/**
+ * A function that generates a random number based on "reviews" array's length
+ * @returns {number}
+ */
+const randomNumber = () => {
+  return Math.floor(Math.random() * reviews.length);
+};
+
+window.addEventListener("DOMContentLoaded", function () {
+  showPerson(currenItem);
+});
+
+btnNext.addEventListener("click", () => {
+  currenItem >= reviews.length - 1 ? (currenItem = 0) : currenItem++;
+  showPerson(currenItem);
+});
+
+btnPrev.addEventListener("click", () => {
+  currenItem <= 0 ? (currenItem = reviews.length - 1) : currenItem--;
+  showPerson(currenItem);
+});
+
+btnRandom.addEventListener("click", () => {
+  currenItem = randomNumber();
+  showPerson(currenItem);
 });
