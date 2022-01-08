@@ -1,4 +1,8 @@
 //using selectors inside the element
+
+/**
+ * @constant {DOM}
+ */
 const questions = document.querySelectorAll(".question");
 
 questions.forEach((question) => {
